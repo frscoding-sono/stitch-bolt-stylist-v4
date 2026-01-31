@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleSync Ai. - Complete Journey</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f13ec",
+                        "primary-green": "#11d452",
+                        "primary-gold": "#f4c025",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#141118",
+                        "card-dark": "#1e1726",
+                        "border-dark": "#362b41",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["Newsreader", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+        }
+        
+        /* Screen transition animations */
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        
+        .screen.active {
+            display: block;
+            animation: fadeInSlide 0.4s ease-in-out forwards;
+        }
+        
+        @keyframes fadeInSlide {
+            from { 
+                opacity: 0; 
+                transform: translateX(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+        
+        /* 3D Physical Button Effect */
+        .btn-3d {
+            box-shadow: 0 6px 0 0 #580da5, 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.1s ease;
+            position: relative;
+            top: 0;
+        }
+        
+        .btn-3d:active {
+            box-shadow: 0 2px 0 0 #580da5, 0 3px 8px rgba(0, 0, 0, 0.3);
+            top: 4px;
+        }
+        
+        .btn-3d-green {
+            box-shadow: 0 6px 0 0 #0a8f38, 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-3d-green:active {
+            box-shadow: 0 2px 0 0 #0a8f38, 0 3px 8px rgba(0, 0, 0, 0.3);
+            top: 4px;
+        }
+        
+        .btn-3d-gold {
+            box-shadow: 0 8px 0 #b8860b, 0 15px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn-3d-gold:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #b8860b, 0 8px 10px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* AI Scanning animation */
+        .scanning-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #7f13ec, transparent);
+            box-shadow: 0 0 15px #7f13ec;
+            position: absolute;
+            width: 100%;
+            animation: scan 2s ease-in-out infinite;
+            z-index: 20;
+        }
+        
+        @keyframes scan {
+            0%, 100% { top: 20%; }
+            50% { top: 80%; }
+        }
+        
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(16, 34, 22, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Progress animation */
+        @keyframes progressGrow {
+            from { width: 0; }
+        }
+        
+        .progress-bar {
+            animation: progressGrow 0.5s ease-out;
+        }
+        
+        /* Shimmer effect */
+        .shimmer-bg {
+            background: linear-gradient(90deg, rgba(127,19,236,0.05) 25%, rgba(127,19,236,0.15) 50%, rgba(127,19,236,0.05) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Hide scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+
+<!-- ========================================
+     SCREEN 0: SPLASH / LANDING
+     ======================================== -->
+<div id="screen-splash" class="screen active">
+    <div class="flex flex-col items-center justify-center h-screen space-y-12 p-8 bg-gradient-to-b from-background-dark via-purple-900/20 to-background-dark">
+        <!-- Top Navigation -->
+        <div class="fixed top-0 right-0 p-4 z-50 flex items-center gap-3">
+            <select class="bg-white/10 text-white text-xs px-3 py-2 rounded-lg border border-white/20 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="zh">🇨🇳 中文</option>
+            </select>
+            <button class="bg-primary hover:bg-primary/90 text-white text-xs font-bold px-4 py-2 rounded-lg transition-colors">
+                Sign In
+            </button>
+        </div>
+        <!-- Pulsing Logo -->
+        <motion.div
+            class="text-7xl font-black italic tracking-tighter text-primary"
+            style="filter: drop-shadow(0 0 15px #7f13ec); animation: pulse 3s infinite;">
+            StyleSync Ai.
+        </motion.div>
+        
+        <!-- Tagline -->
+        <p class="text-gray-400 font-medium tracking-[0.4em] uppercase text-[10px]">
+            Sync Your Vibe
+        </p>
+        
+        <!-- Description -->
+        <div class="text-center max-w-md space-y-4">
+            <h2 class="text-2xl font-bold text-white">Your AI Personal Stylist</h2>
+            <p class="text-white/70 text-sm leading-relaxed">
+                전문 패션 추천을 당신의 독특한 체형에 맞춰 제공합니다. 
+                AI 기술로 최적의 스타일을 찾아보세요.
+            </p>
+        </div>
+        
+        <!-- 3D Physical Button -->
+        <button
+            onclick="navigateTo('onboarding')"
+            class="btn-3d px-16 py-6 bg-primary text-white rounded-full font-black text-xs tracking-widest hover:bg-primary/90">
+            INITIATE SYSTEM
+        </button>
+        
+        <!-- Features Pills -->
+        <div class="flex gap-4 flex-wrap justify-center max-w-md">
+            <div class="bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                <span class="text-xs text-white/70">📸 AI 분석</span>
+            </div>
+            <div class="bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                <span class="text-xs text-white/70">👔 실시간 피팅</span>
+            </div>
+            <div class="bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                <span class="text-xs text-white/70">📅 주간 스타일</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================
+     SCREEN 1: ONBOARDING / HOW IT WORKS
+     ======================================== -->
+<div id="screen-onboarding" class="screen">
+    <nav class="fixed top-0 z-50 w-full bg-background-dark/80 backdrop-blur-md border-b border-white/5">
+        <div class="flex items-center p-4 justify-between max-w-lg mx-auto">
+            <button onclick="navigateBack()" class="text-white/70 hover:text-white transition-colors active:scale-90">
+                <span class="material-symbols-outlined text-2xl">arrow_back</span>
+            </button>
+            <h2 class="text-white text-lg font-bold">How It Works</h2>
+            <div class="flex items-center gap-2">
+                <select class="bg-white/10 text-white text-xs px-2 py-1 rounded border border-white/20 focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer">
+                    <option value="ko">🇰🇷</option>
+                    <option value="en">🇺🇸</option>
+                    <option value="ja">🇯🇵</option>
+                    <option value="zh">🇨🇳</option>
+                </select>
+                <button class="bg-primary hover:bg-primary/90 text-white text-xs font-bold px-3 py-1.5 rounded transition-colors">
+                    Sign In
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20 pb-24 max-w-lg mx-auto px-4">
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-4 block">
+                Experience the future
+            </span>
+            <h1 class="text-white text-3xl font-bold mb-6">
+                3단계로 완성하는<br/>나만의 스타일
+            </h1>
+        </section>
+
+        <!-- Process Steps -->
+        <section class="space-y-6">
+            <!-- Step 1 -->
+            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <div class="flex items-start gap-4">
+                    <div class="flex size-12 items-center justify-center rounded-full bg-primary/20 text-primary flex-shrink-0">
+                        <span class="material-symbols-outlined text-3xl">photo_camera</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-white text-lg font-bold mb-2">1. AI 스캔 & 분석</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">
+                            몇 장의 사진을 업로드하면 AI가 당신의 체형, 피부톤, 
+                            기존 스타일을 분석합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <div class="flex items-start gap-4">
+                    <div class="flex size-12 items-center justify-center rounded-full bg-primary-green/20 text-primary-green flex-shrink-0">
+                        <span class="material-symbols-outlined text-3xl">checkroom</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-white text-lg font-bold mb-2">2. 라이브 피팅</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">
+                            실시간으로 다양한 원단과 스타일을 가상으로 입어보세요. 
+                            날씨까지 고려한 스마트 추천.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <div class="flex items-start gap-4">
+                    <div class="flex size-12 items-center justify-center rounded-full bg-primary-gold/20 text-primary-gold flex-shrink-0">
+                        <span class="material-symbols-outlined text-3xl">shopping_bag</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-white text-lg font-bold mb-2">3. 주간 스타일 & 쇼핑</h3>
+                        <p class="text-white/60 text-sm leading-relaxed">
+                            매주 큐레이션된 스타일을 받고, THE LOOK에서 바로 구매하세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Features Grid -->
+        <section class="mt-12">
+            <h3 class="text-white text-xl font-bold mb-6 text-center">Premium Features</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-primary mb-3">
+                        <span class="material-symbols-outlined text-3xl">palette</span>
+                    </div>
+                    <p class="text-white font-bold text-sm mb-1">컬러 이론</p>
+                    <p class="text-white/50 text-xs">피부톤 기반 색상 분석</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-primary mb-3">
+                        <span class="material-symbols-outlined text-3xl">wb_sunny</span>
+                    </div>
+                    <p class="text-white font-bold text-sm mb-1">날씨 매칭</p>
+                    <p class="text-white/50 text-xs">실시간 기후 고려 추천</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-primary mb-3">
+                        <span class="material-symbols-outlined text-3xl">auto_fix_high</span>
+                    </div>
+                    <p class="text-white font-bold text-sm mb-1">매직 필</p>
+                    <p class="text-white/50 text-xs">주간 스타일 자동 생성</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div class="text-primary mb-3">
+                        <span class="material-symbols-outlined text-3xl">verified_user</span>
+                    </div>
+                    <p class="text-white font-bold text-sm mb-1">Elite 등급</p>
+                    <p class="text-white/50 text-xs">프리미엄 혜택 제공</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom CTA -->
+    <div class="fixed bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent z-50">
+        <button onclick="navigateTo('body-profile')" class="btn-3d w-full py-5 bg-primary text-white rounded-2xl font-bold text-base shadow-xl shadow-primary/20">
+            시작하기
+        </button>
+    </div>
+</div>
+
+<!-- ========================================
+     SCREEN 2: BODY PROFILE
+     ======================================== -->
+<div id="screen-body-profile" class="screen">
+    <nav class="sticky top-0 z-50 w-full bg-background-dark/90 backdrop-blur-md border-b border-white/5">
+        <div class="flex items-center p-4 justify-between max-w-lg mx-auto">
+            <button onclick="navigateBack()" class="text-white/70 hover:text-white transition-colors active:scale-90">
+                <span class="material-symbols-outlined text-2xl">arrow_back</span>
+            </button>
+            <div class="flex-1 mx-4">
+                <div class="flex justify-center gap-2">
+                    <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+                    <div class="h-1.5 w-12 rounded-full bg-white/20"></div>
+                    <div class="h-1.5 w-12 rounded-full bg-white/20"></div>
+                    <div class="h-1.5 w-12 rounded-full bg-white/20"></div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <select class="bg-white/10 text-white text-xs px-2 py-1 rounded border border-white/20 focus:outline-none cursor-pointer">
+                    <option value="ko">🇰🇷</option>
+                    <option value="en">🇺🇸</option>
+                </select>
+                <button class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded">
+                    Sign In
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="p-8 pb-32 max-w-lg mx-auto">
+        <div class="mb-8 text-center">
+            <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">Step 1</span>
+            <h2 class="text-3xl font-bold text-white mb-4">신체 정보</h2>
+            <p class="text-white/60 text-sm">키, 몸무게, 체형을 입력해주세요</p>
+        </div>
+
+        <!-- Height & Weight Input -->
+        <div class="mb-8 grid grid-cols-2 gap-4">
+            <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+                <label class="text-white/60 text-xs font-bold uppercase tracking-wider mb-2 block">키</label>
+                <div class="flex items-center gap-2">
+                    <input 
+                        type="number" 
+                        id="height-input"
+                        placeholder="170"
+                        class="bg-transparent text-white text-2xl font-bold w-full focus:outline-none focus:ring-2 focus:ring-primary rounded px-2"
+                        min="100" 
+                        max="250"
+                        oninput="saveHeight(this.value)">
+                    <span class="text-white/40 text-sm font-bold">cm</span>
+                </div>
+            </div>
+
+            <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+                <label class="text-white/60 text-xs font-bold uppercase tracking-wider mb-2 block">몸무게</label>
+                <div class="flex items-center gap-2">
+                    <input 
+                        type="number" 
+                        id="weight-input"
+                        placeholder="65"
+                        class="bg-transparent text-white text-2xl font-bold w-full focus:outline-none focus:ring-2 focus:ring-primary rounded px-2"
+                        min="30" 
+                        max="200"
+                        oninput="saveWeight(this.value)">
+                    <span class="text-white/40 text-sm font-bold">kg</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Body Shape Title -->
+        <div class="mb-4">
+            <h3 class="text-white text-lg font-bold mb-1">체형 선택</h3>
+            <p class="text-white/50 text-xs">당신의 체형과 가장 유사한 것을 선택하세요</p>
+        </div>
+
+        <!-- Body Shape Selector -->
+        <div class="grid grid-cols-2 gap-4">
+            <button onclick="selectBodyShape('inverted-triangle')" data-shape="inverted-triangle" 
+                class="body-shape-card flex flex-col items-center p-6 rounded-2xl border-2 border-border-dark bg-card-dark hover:border-primary/50 transition-all">
+                <div class="w-16 h-24 mb-3 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined !text-5xl">change_history</span>
+                </div>
+                <span class="text-sm font-bold text-slate-200">역삼각형</span>
+            </button>
+
+            <button onclick="selectBodyShape('rectangle')" data-shape="rectangle" 
+                class="body-shape-card flex flex-col items-center p-6 rounded-2xl border-2 border-border-dark bg-card-dark hover:border-primary/50 transition-all">
+                <div class="w-16 h-24 mb-3 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined !text-5xl">rectangle</span>
+                </div>
+                <span class="text-sm font-bold text-slate-200">직사각형</span>
+            </button>
+
+            <button onclick="selectBodyShape('hourglass')" data-shape="hourglass" 
+                class="body-shape-card flex flex-col items-center p-6 rounded-2xl border-2 border-border-dark bg-card-dark hover:border-primary/50 transition-all">
+                <div class="w-16 h-24 mb-3 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined !text-5xl">hourglass_empty</span>
+                </div>
+                <span class="text-sm font-bold text-slate-200">모래시계</span>
+            </button>
+
+            <button onclick="selectBodyShape('pear')" data-shape="pear" 
+                class="body-shape-card flex flex-col items-center p-6 rounded-2xl border-2 border-border-dark bg-card-dark hover:border-primary/50 transition-all">
+                <div class="w-16 h-24 mb-3 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined !text-5xl">eject</span>
+                </div>
+                <span class="text-sm font-bold text-slate-200">배</span>
+            </button>
+
+            <button onclick="selectBodyShape('apple')" data-shape="apple" 
+                class="body-shape-card flex flex-col items-center p-6 rounded-2xl border-2 border-border-dark bg-card-dark hover:border-primary/50 transition-all col-span-2">
+                <div class="w-16 h-24 mb-3 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined !text-5xl">radio_button_checked</span>
+                </div>
+                <span class="text-sm font-bold text-slate-200">사과 / 원형</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Bottom Button -->
+    <div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent">
+        <button onclick="navigateTo('face-scan')" class="btn-3d w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 rounded-2xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+            <span>다음 단계</span>
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </button>
+    </div>
+</div>
+
+<!-- ========================================
+     SCREEN 3: FACE SCAN (HUD Style)
+     ======================================== -->
+<div id="screen-face-scan" class="screen">
+    <div class="relative h-screen flex flex-col bg-gradient-to-b from-purple-950 to-background-dark overflow-hidden">
+        <!-- Top HUD -->
+        <div class="flex items-center p-4 justify-between z-50">
+            <button onclick="navigateBack()" class="text-white/70 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+            </button>
+            <div class="text-center">
+                <h2 class="text-white text-lg font-bold tracking-[0.2em]">DIGITAL STITCH</h2>
+                <span class="text-[10px] text-primary font-bold tracking-widest uppercase">AI 스캔 & 분석</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <select class="bg-white/10 text-white text-xs px-2 py-1 rounded border border-white/20 focus:outline-none cursor-pointer">
+                    <option value="ko">🇰🇷</option>
+                    <option value="en">🇺🇸</option>
+                </select>
+                <button class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded">
+                    Sign In
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="flex justify-center gap-2 py-3">
+            <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+            <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+            <div class="h-1.5 w-12 rounded-full bg-white/20"></div>
+            <div class="h-1.5 w-12 rounded-full bg-white/20"></div>
+        </div>
+
+        <!-- Tab Selection -->
+        <div class="px-6 pb-4">
+            <div class="flex gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10">
+                <button onclick="switchScanMode('camera')" id="tab-camera" class="scan-tab flex-1 py-3 rounded-lg bg-primary text-white font-bold text-sm transition-all">
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">photo_camera</span>
+                        <span>실시간 스캔</span>
+                    </div>
+                </button>
+                <button onclick="switchScanMode('upload')" id="tab-upload" class="scan-tab flex-1 py-3 rounded-lg text-white/60 font-bold text-sm transition-all hover:text-white hover:bg-white/5">
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">upload_file</span>
+                        <span>사진 업로드</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 px-6 overflow-y-auto hide-scrollbar">
+            <!-- Camera Scan Mode -->
+            <div id="mode-camera" class="scan-mode flex items-center justify-center">
+                <div class="relative">
+                    <!-- Scan Guide -->
+                    <div class="w-64 h-80 border-2 border-dashed border-primary/40 rounded-full relative overflow-hidden flex items-center justify-center">
+                        <!-- Animated Scan Line -->
+                        <div class="scanning-line"></div>
+                        
+                        <!-- Camera Icon -->
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-6xl text-primary/60 mb-4">person</span>
+                            <p class="text-[8px] font-mono text-primary/40 uppercase tracking-widest">
+                                FACIAL MAP ACTIVE
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Corner Brackets -->
+                    <div class="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-primary"></div>
+                    <div class="absolute top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-primary"></div>
+                    <div class="absolute bottom-0 left-0 w-8 h-8 border-l-2 border-b-2 border-primary"></div>
+                    <div class="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-primary"></div>
+                </div>
+            </div>
+
+            <!-- Upload Mode -->
+            <div id="mode-upload" class="scan-mode hidden">
+                <div class="space-y-4">
+                    <!-- Upload Instructions -->
+                    <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5">
+                        <h3 class="text-white font-bold text-base mb-3">📸 스타일 사진 업로드</h3>
+                        <p class="text-white/60 text-sm leading-relaxed mb-4">
+                            당신이 좋아하는 스타일, 현재 룩, 또는 원하는 스타일의 사진을 업로드하세요. AI가 자동으로 분석합니다.
+                        </p>
+                        <ul class="space-y-2 text-xs text-white/50">
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary">•</span>
+                                <span>전신 사진이 가장 정확합니다</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary">•</span>
+                                <span>밝은 조명에서 촬영된 사진 권장</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary">•</span>
+                                <span>최대 5장까지 업로드 가능</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- File Upload Area -->
+                    <div class="bg-white/5 backdrop-blur-md border-2 border-dashed border-primary/30 rounded-2xl p-8 text-center hover:border-primary/60 transition-all cursor-pointer" onclick="document.getElementById('file-input').click()">
+                        <input type="file" id="file-input" class="hidden" accept="image/*" multiple onchange="handleFileUpload(event)" />
+                        
+                        <div class="flex flex-col items-center gap-3">
+                            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl">add_photo_alternate</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-bold mb-1">사진 선택 또는 드래그</p>
+                                <p class="text-white/50 text-xs">JPG, PNG (최대 10MB)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Grid -->
+                    <div id="photo-preview-grid" class="grid grid-cols-3 gap-3 hidden">
+                        <!-- Photos will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HUD Info -->
+        <div class="p-6 space-y-4">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4">
+                <p class="text-[10px] text-primary font-bold tracking-[0.4em] uppercase mb-2">
+                    Status
+                </p>
+                <h3 class="text-xl font-bold text-white mb-1" id="scan-status-title">
+                    스캔 준비 완료
+                </h3>
+                <p class="text-white/60 text-sm" id="scan-status-desc">
+                    AI가 얼굴형, 피부톤, 헤어 스타일, 패션 선호도를 분석합니다
+                </p>
+            </div>
+        </div>
+
+        <!-- Complete Button -->
+        <div class="fixed bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent">
+            <button onclick="navigateTo('live-fitting')" class="btn-3d w-full py-6 bg-blue-600 text-white rounded-2xl font-black uppercase text-sm tracking-widest shadow-xl shadow-blue-600/20 hover:bg-blue-500">
+                <span id="scan-button-text">분석 시작</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================
+     SCREEN 4: LIVE FITTING (v39 Style)
+     ======================================== -->
+<div id="screen-live-fitting" class="screen">
+    <div class="relative h-screen flex flex-col overflow-hidden" style="background: linear-gradient(135deg, #102216 0%, #1a1a2e 100%);">
+        <!-- Top Navigation -->
+        <div class="relative z-50 flex items-center bg-transparent p-4 pb-2 justify-between">
+            <button onclick="navigateBack()" class="text-white flex size-12 shrink-0 items-center justify-start">
+                <span class="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+            </button>
+            <div class="flex flex-col items-center">
+                <h2 class="text-white text-lg font-bold leading-tight tracking-tight">StyleSync Ai.</h2>
+                <span class="text-[10px] tracking-[0.2em] uppercase text-primary-green font-bold">Live Fitting</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <select class="bg-white/10 text-white text-xs px-2 py-1 rounded border border-white/20 focus:outline-none cursor-pointer">
+                    <option value="ko">🇰🇷</option>
+                    <option value="en">🇺🇸</option>
+                </select>
+                <button class="bg-primary-green text-black text-xs font-bold px-3 py-1.5 rounded">
+                    Sign In
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="flex justify-center gap-2 py-3">
+            <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+            <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+            <div class="h-1.5 w-12 rounded-full bg-primary-green"></div>
+            <div class="h-1.5 w-12 rounded-full bg-white/20"></div>
+        </div>
+
+        <!-- Avatar Background -->
+        <main class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-center bg-no-repeat bg-cover flex flex-col justify-center items-center" 
+                style='background-image: linear-gradient(to bottom, rgba(16, 34, 22, 0.2), rgba(16, 34, 22, 0.8)), url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80");'>
+                <div class="w-full h-full flex items-center justify-center">
+                    <div class="text-center">
+                        <span class="material-symbols-outlined text-8xl text-primary-green/30">checkroom</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating HUD Elements -->
+        <div class="relative z-10 flex flex-col h-full pointer-events-none p-4 justify-between pt-20 pb-44">
+            <!-- Top HUD Cards -->
+            <div class="flex flex-col gap-4 w-full max-w-xs">
+                <!-- Weather Information -->
+                <div class="glass-card p-4 rounded-xl pointer-events-auto">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <p class="text-[10px] uppercase tracking-wider text-primary-green font-bold mb-1">실시간 날씨</p>
+                            <p class="text-white text-2xl font-black" id="weather-temp">22°C</p>
+                        </div>
+                        <div class="text-4xl" id="weather-icon">☀️</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-2 mb-3">
+                        <div class="bg-white/5 rounded-lg p-2">
+                            <p class="text-white/50 text-[9px] uppercase mb-1">계절</p>
+                            <p class="text-white text-xs font-bold" id="weather-season">봄</p>
+                        </div>
+                        <div class="bg-white/5 rounded-lg p-2">
+                            <p class="text-white/50 text-[9px] uppercase mb-1">습도</p>
+                            <p class="text-white text-xs font-bold" id="weather-humidity">45%</p>
+                        </div>
+                        <div class="bg-white/5 rounded-lg p-2">
+                            <p class="text-white/50 text-[9px] uppercase mb-1">시간</p>
+                            <p class="text-white text-xs font-bold" id="weather-time">오후</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 text-white/60 text-xs">
+                        <span class="material-symbols-outlined text-sm">location_on</span>
+                        <span>서울, 대한민국</span>
+                    </div>
+                </div>
+
+                <!-- Fabric Recommendation -->
+                <div class="glass-card p-4 rounded-xl pointer-events-auto">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary-green text-lg">recommend</span>
+                            <p class="text-[10px] uppercase tracking-wider text-primary-green font-bold">AI 원단 추천</p>
+                        </div>
+                        <div class="bg-primary-green/20 px-2 py-1 rounded-full">
+                            <p class="text-primary-green text-[9px] font-bold">최적</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-white text-lg font-black mb-2" id="recommended-fabric">린넨 & 코튼</p>
+                    <p class="text-white/60 text-xs leading-relaxed mb-3" id="recommendation-reason">
+                        현재 온도와 습도에 가장 적합한 원단입니다. 통기성이 뛰어나 쾌적함을 유지합니다.
+                    </p>
+                    
+                    <!-- Fabric Properties -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-white/70">통기성</span>
+                            <div class="flex items-center gap-1">
+                                <div class="h-1.5 w-16 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary-green" style="width: 90%;" id="fabric-breathability"></div>
+                                </div>
+                                <span class="text-white font-bold text-[10px]">90%</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-white/70">보온성</span>
+                            <div class="flex items-center gap-1">
+                                <div class="h-1.5 w-16 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary-green" style="width: 30%;" id="fabric-warmth"></div>
+                                </div>
+                                <span class="text-white font-bold text-[10px]">30%</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-white/70">쾌적도</span>
+                            <div class="flex items-center gap-1">
+                                <div class="h-1.5 w-16 bg-white/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary-green" style="width: 95%;" id="fabric-comfort"></div>
+                                </div>
+                                <span class="text-white font-bold text-[10px]">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Texture Selector -->
+            <div class="glass-card p-4 rounded-2xl pointer-events-auto">
+                <div class="flex justify-between items-center mb-3">
+                    <p class="text-[10px] uppercase tracking-wider text-primary-green font-bold">
+                        원단 선택
+                    </p>
+                    <button onclick="updateWeatherRecommendation()" class="flex items-center gap-1 bg-primary-green/20 px-2 py-1 rounded-full">
+                        <span class="material-symbols-outlined text-primary-green text-xs">refresh</span>
+                        <span class="text-primary-green text-[9px] font-bold">추천 갱신</span>
+                    </button>
+                </div>
+                
+                <div class="flex gap-3 justify-around">
+                    <button onclick="selectTexture('silk')" data-fabric="silk" class="texture-btn flex flex-col items-center gap-2 p-3 rounded-xl bg-white/10 hover:bg-white/20 transition-all relative">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gray-200 to-gray-400"></div>
+                        <span class="text-white text-xs font-bold">실크</span>
+                    </button>
+                    <button onclick="selectTexture('wool')" data-fabric="wool" class="texture-btn flex flex-col items-center gap-2 p-3 rounded-xl bg-white/10 hover:bg-white/20 transition-all relative">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-900 to-amber-700"></div>
+                        <span class="text-white text-xs font-bold">울</span>
+                    </button>
+                    <button onclick="selectTexture('linen')" data-fabric="linen" class="texture-btn flex flex-col items-center gap-2 p-3 rounded-xl bg-white/10 hover:bg-white/20 transition-all relative">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-stone-200 to-stone-400"></div>
+                        <span class="text-white text-xs font-bold">린넨</span>
+                        <div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>
+                    </button>
+                    <button onclick="selectTexture('cotton')" data-fabric="cotton" class="texture-btn flex flex-col items-center gap-2 p-3 rounded-xl bg-white/10 hover:bg-white/20 transition-all relative">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-200 to-blue-400"></div>
+                        <span class="text-white text-xs font-bold">코튼</span>
+                        <div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue Button -->
+        <div class="fixed bottom-0 inset-x-0 p-6 z-[100] bg-gradient-to-t from-background-dark via-background-dark/90 to-transparent">
+            <button onclick="navigateTo('my-look')" class="btn-3d btn-3d-green w-full py-6 bg-primary-green text-black rounded-2xl font-black uppercase text-sm tracking-widest">
+                내 룩 확정하기
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================
+     SCREEN 4.5: MY LOOK (Final Look)
+     ======================================== -->
+<div id="screen-my-look" class="screen">
+    <div class="relative min-h-screen flex flex-col bg-gradient-to-b from-slate-900 via-purple-900/30 to-background-dark overflow-hidden">
+        <!-- Top Navigation -->
+        <div class="relative z-50 flex items-center bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-white/10">
+            <button onclick="navigateBack()" class="text-white/70 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+            </button>
+            <div class="text-center flex-1">
+                <h2 class="text-white text-lg font-bold tracking-tight">Your Final Look</h2>
+                <span class="text-[10px] text-primary tracking-widest uppercase font-bold">완성된 스타일</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button class="bg-white/10 text-white p-2 rounded-lg hover:bg-white/20 transition-colors">
+                    <span class="material-symbols-outlined text-lg">share</span>
+                </button>
+                <button class="bg-primary text-white text-xs font-bold px-3 py-2 rounded-lg">
+                    Save
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="flex justify-center gap-2 py-4 bg-background-dark/60">
+            <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+            <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+            <div class="h-1.5 w-12 rounded-full bg-primary"></div>
+            <div class="h-1.5 w-12 rounded-full bg-white/20"></div>
+        </div>
+
+        <!-- Main Look Display -->
+        <div class="flex-1 flex flex-col items-center justify-center px-6 py-8 relative">
+            <!-- Look Preview Container -->
+            <div class="relative w-full max-w-md">
+                <!-- Glow Effect Background -->
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary-green/20 blur-3xl"></div>
+                
+                <!-- Main Look Image -->
+                <div class="relative aspect-[3/4] rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl bg-gradient-to-b from-slate-800 to-slate-900" id="main-look-container">
+                    <img 
+                        id="main-look-image"
+                        src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&q=85" 
+                        alt="Your Look" 
+                        class="w-full h-full object-cover transition-all duration-500">
+                    
+                    <!-- Style Info Overlay -->
+                    <div class="absolute top-4 left-4 right-4">
+                        <div class="bg-black/40 backdrop-blur-md rounded-xl p-3 border border-white/20">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="material-symbols-outlined text-primary-green text-sm">check_circle</span>
+                                <p class="text-white text-xs font-bold uppercase tracking-wider">AI 최적화 완료</p>
+                            </div>
+                            <p class="text-white/80 text-[10px]" id="look-description">
+                                현재 날씨와 체형에 완벽하게 맞춘 스타일입니다
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Body Shape Tag -->
+                    <div class="absolute bottom-4 left-4">
+                        <div class="bg-primary/80 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                            <p class="text-white text-xs font-bold" id="look-body-shape">체형 최적화</p>
+                        </div>
+                    </div>
+
+                    <!-- Fabric Tag -->
+                    <div class="absolute bottom-4 right-4">
+                        <div class="bg-primary-green/80 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                            <p class="text-black text-xs font-bold" id="look-fabric">린넨 & 코튼</p>
+                        </div>
+                    </div>
+
+                    <!-- Loading Overlay (initially hidden) -->
+                    <div id="look-loading" class="hidden absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-3 mx-auto"></div>
+                            <p class="text-white text-sm font-bold">스타일 적용중...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Style Stats -->
+                <div class="mt-6 grid grid-cols-3 gap-3">
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-3 border border-white/10 text-center">
+                        <span class="material-symbols-outlined text-primary text-2xl mb-1">favorite</span>
+                        <p class="text-white text-xl font-black">98%</p>
+                        <p class="text-white/60 text-[10px] uppercase tracking-wider">매칭률</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-3 border border-white/10 text-center">
+                        <span class="material-symbols-outlined text-primary-green text-2xl mb-1">wb_sunny</span>
+                        <p class="text-white text-xl font-black">22°C</p>
+                        <p class="text-white/60 text-[10px] uppercase tracking-wider">날씨</p>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm rounded-xl p-3 border border-white/10 text-center">
+                        <span class="material-symbols-outlined text-primary-gold text-2xl mb-1">grade</span>
+                        <p class="text-white text-xl font-black">A+</p>
+                        <p class="text-white/60 text-[10px] uppercase tracking-wider">등급</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Products Section -->
+        <div class="bg-gradient-to-t from-background-dark via-background-dark to-transparent px-6 pb-24 pt-8">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-1">추천 아이템</h3>
+                    <p class="text-white/60 text-xs">선택하면 룩에 바로 적용됩니다</p>
+                </div>
+                <button class="text-primary text-xs font-bold flex items-center gap-1">
+                    <span>전체보기</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+            </div>
+
+            <!-- Horizontal Product Scroll -->
+            <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4" id="product-carousel">
+                <!-- Product 1 -->
+                <button onclick="applyProduct('https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&q=85', '캐주얼 린넨 셔츠', '79,000원')" 
+                    class="product-card flex-shrink-0 w-40 bg-white/5 rounded-xl border border-white/10 overflow-hidden hover:border-primary transition-all hover:scale-105">
+                    <div class="aspect-square bg-gradient-to-br from-slate-700 to-slate-900 relative">
+                        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400&q=80" 
+                            alt="Product" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2 bg-primary-green text-black text-[9px] font-black px-2 py-0.5 rounded-full">
+                            HOT
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-white text-xs font-bold mb-1 truncate">캐주얼 린넨 셔츠</p>
+                        <p class="text-primary text-sm font-black">79,000원</p>
+                        <div class="flex items-center gap-1 mt-2">
+                            <span class="text-yellow-400 text-xs">★</span>
+                            <span class="text-white/60 text-[10px]">4.8 (234)</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Product 2 -->
+                <button onclick="applyProduct('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=85', '슬림핏 코튼 팬츠', '89,000원')"
+                    class="product-card flex-shrink-0 w-40 bg-white/5 rounded-xl border border-white/10 overflow-hidden hover:border-primary transition-all hover:scale-105">
+                    <div class="aspect-square bg-gradient-to-br from-slate-700 to-slate-900 relative">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80" 
+                            alt="Product" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2 bg-primary text-white text-[9px] font-black px-2 py-0.5 rounded-full">
+                            NEW
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-white text-xs font-bold mb-1 truncate">슬림핏 코튼 팬츠</p>
+                        <p class="text-primary text-sm font-black">89,000원</p>
+                        <div class="flex items-center gap-1 mt-2">
+                            <span class="text-yellow-400 text-xs">★</span>
+                            <span class="text-white/60 text-[10px]">4.9 (156)</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Product 3 -->
+                <button onclick="applyProduct('https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=600&q=85', '프리미엄 블레이저', '189,000원')"
+                    class="product-card flex-shrink-0 w-40 bg-white/5 rounded-xl border border-white/10 overflow-hidden hover:border-primary transition-all hover:scale-105">
+                    <div class="aspect-square bg-gradient-to-br from-slate-700 to-slate-900 relative">
+                        <img src="https://images.unsplash.com/photo-1507680434567-5739c80be1ac?w=400&q=80" 
+                            alt="Product" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-3">
+                        <p class="text-white text-xs font-bold mb-1 truncate">프리미엄 블레이저</p>
+                        <p class="text-primary text-sm font-black">189,000원</p>
+                        <div class="flex items-center gap-1 mt-2">
+                            <span class="text-yellow-400 text-xs">★</span>
+                            <span class="text-white/60 text-[10px]">5.0 (89)</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Product 4 -->
+                <button onclick="applyProduct('https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=600&q=85', '스프링 니트', '65,000원')"
+                    class="product-card flex-shrink-0 w-40 bg-white/5 rounded-xl border border-white/10 overflow-hidden hover:border-primary transition-all hover:scale-105">
+                    <div class="aspect-square bg-gradient-to-br from-slate-700 to-slate-900 relative">
+                        <img src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?w=400&q=80" 
+                            alt="Product" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full">
+                            SALE
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-white text-xs font-bold mb-1 truncate">스프링 니트</p>
+                        <p class="text-primary text-sm font-black">65,000원</p>
+                        <div class="flex items-center gap-1 mt-2">
+                            <span class="text-yellow-400 text-xs">★</span>
+                            <span class="text-white/60 text-[10px]">4.7 (312)</span>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Product 5 -->
+                <button onclick="applyProduct('https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=600&q=85', '모던 스니커즈', '125,000원')"
+                    class="product-card flex-shrink-0 w-40 bg-white/5 rounded-xl border border-white/10 overflow-hidden hover:border-primary transition-all hover:scale-105">
+                    <div class="aspect-square bg-gradient-to-br from-slate-700 to-slate-900 relative">
+                        <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&q=80" 
+                            alt="Product" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-3">
+                        <p class="text-white text-xs font-bold mb-1 truncate">모던 스니커즈</p>
+                        <p class="text-primary text-sm font-black">125,000원</p>
+                        <div class="flex items-center gap-1 mt-2">
+                            <span class="text-yellow-400 text-xs">★</span>
+                            <span class="text-white/60 text-[10px]">4.6 (445)</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Continue Button -->
+        <div class="fixed bottom-0 inset-x-0 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent z-50">
+            <button onclick="navigateTo('weekly-sync')" class="btn-3d w-full py-6 bg-primary text-white rounded-2xl font-black uppercase text-sm tracking-widest shadow-xl shadow-primary/20">
+                주간 스타일 보기
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================
+     SCREEN 5: WEEKLY SYNC (v40 Style - White Background)
+     ======================================== -->
+<div id="screen-weekly-sync" class="screen">
+    <div class="relative mx-auto min-h-screen max-w-[480px] flex flex-col bg-white">
+        <!-- Top Navigation -->
+        <div class="flex items-center bg-white p-4 pb-2 justify-between sticky top-0 z-50 border-b border-gray-100">
+            <button onclick="navigateBack()" class="text-gray-900 flex size-12 shrink-0 items-center justify-start cursor-pointer">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+            <h2 class="text-gray-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">
+                Weekly Style Sync
+            </h2>
+            <div class="flex items-center gap-2">
+                <select class="bg-gray-100 text-gray-900 text-xs px-2 py-1 rounded border border-gray-200 focus:outline-none cursor-pointer">
+                    <option value="ko">🇰🇷</option>
+                    <option value="en">🇺🇸</option>
+                </select>
+                <button class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded">
+                    Sign In
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="flex flex-col gap-3 p-6 bg-gradient-to-br from-purple-50 to-pink-50 border-b border-gray-100">
+            <div class="flex gap-6 justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary animate-pulse">auto_fix_high</span>
+                    <p class="text-gray-900 text-base font-bold">매직 필 싱크중...</p>
+                </div>
+                <p class="text-primary text-base font-black">100%</p>
+            </div>
+            <div class="rounded-full bg-gray-200 h-3 overflow-hidden">
+                <div class="h-full rounded-full bg-gradient-to-r from-primary via-pink-500 to-primary progress-bar" style="width: 100%;"></div>
+            </div>
+            <p class="text-gray-600 text-sm">
+                당신의 한 주를 빛나게 할 스타일이 준비되었습니다 ✨
+            </p>
+        </div>
+
+        <!-- Date Header -->
+        <div class="px-6 pt-6 pb-4 bg-white">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-gray-900 text-2xl font-black mb-1">2월 1주차</h3>
+                    <p class="text-gray-500 text-sm">2026년 2월 1일 - 2월 7일</p>
+                </div>
+                <button class="bg-gradient-to-r from-primary to-pink-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg hover:shadow-xl transition-shadow">
+                    전체 채우기
+                </button>
+            </div>
+        </div>
+
+        <!-- Weekly Calendar Grid -->
+        <div class="px-6 pb-32 bg-white">
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Monday -->
+                <div class="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-primary transition-all hover:shadow-lg">
+                    <div class="flex">
+                        <div class="w-24 bg-gradient-to-br from-purple-100 to-pink-100 flex flex-col items-center justify-center p-4 border-r border-gray-200">
+                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Mon</p>
+                            <p class="text-gray-900 text-3xl font-black">1</p>
+                            <div class="mt-2 w-2 h-2 rounded-full bg-primary"></div>
+                        </div>
+                        <div class="flex-1 p-4 bg-cover bg-center relative" 
+                            style='background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.3)), url("https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&q=80");'>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-900 font-bold text-base mb-1">캐주얼 오피스룩</p>
+                                    <p class="text-gray-600 text-xs mb-2">린넨 셔츠 + 슬랙스</p>
+                                    <div class="flex gap-1">
+                                        <span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">22°C</span>
+                                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full">완료</span>
+                                    </div>
+                                </div>
+                                <button class="bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all">
+                                    <span class="material-symbols-outlined text-gray-700 text-lg">edit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tuesday -->
+                <div class="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-primary transition-all hover:shadow-lg">
+                    <div class="flex">
+                        <div class="w-24 bg-gradient-to-br from-blue-100 to-cyan-100 flex flex-col items-center justify-center p-4 border-r border-gray-200">
+                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Tue</p>
+                            <p class="text-gray-900 text-3xl font-black">2</p>
+                            <div class="mt-2 w-2 h-2 rounded-full bg-blue-500"></div>
+                        </div>
+                        <div class="flex-1 p-4 bg-cover bg-center relative" 
+                            style='background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.3)), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80");'>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-gray-900 font-bold text-base mb-1">비즈니스 미팅</p>
+                                    <p class="text-gray-600 text-xs mb-2">블레이저 + 드레스 팬츠</p>
+                                    <div class="flex gap-1">
+                                        <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">20°C</span>
+                                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full">완료</span>
+                                    </div>
+                                </div>
+                                <button class="bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all">
+                                    <span class="material-symbols-outlined text-gray-700 text-lg">edit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wednesday - Magic Fill -->
+                <div class="bg-gradient-to-br from-primary/5 to-pink-50 rounded-2xl border-2 border-dashed border-primary/40 overflow-hidden shimmer-bg relative">
+                    <div class="flex">
+                        <div class="w-24 bg-gradient-to-br from-purple-100 to-pink-100 flex flex-col items-center justify-center p-4 border-r border-primary/20">
+                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Wed</p>
+                            <p class="text-gray-900 text-3xl font-black">3</p>
+                            <span class="material-symbols-outlined text-primary text-2xl mt-1 animate-pulse">auto_fix_high</span>
+                        </div>
+                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-3 mx-auto">
+                                    <span class="material-symbols-outlined text-primary text-3xl animate-pulse">auto_fix_high</span>
+                                </div>
+                                <p class="text-gray-900 font-bold text-base mb-1">AI 스타일 생성중</p>
+                                <p class="text-gray-600 text-xs mb-3">날씨와 일정에 맞춰 자동 추천</p>
+                                <button class="bg-gradient-to-r from-primary to-pink-500 text-white text-xs font-bold px-4 py-2 rounded-full hover:shadow-lg transition-shadow">
+                                    지금 생성
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thursday - Empty -->
+                <div class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 overflow-hidden hover:border-primary/50 transition-all cursor-pointer">
+                    <div class="flex">
+                        <div class="w-24 bg-gray-100 flex flex-col items-center justify-center p-4 border-r border-gray-300">
+                            <p class="text-gray-400 text-xs font-bold uppercase mb-1">Thu</p>
+                            <p class="text-gray-500 text-3xl font-black">4</p>
+                        </div>
+                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
+                            <span class="material-symbols-outlined text-gray-400 text-4xl mb-2">add_circle</span>
+                            <p class="text-gray-500 font-bold text-sm">스타일 추가</p>
+                            <p class="text-gray-400 text-xs">클릭하여 새 룩 만들기</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friday - Empty -->
+                <div class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 overflow-hidden hover:border-primary/50 transition-all cursor-pointer">
+                    <div class="flex">
+                        <div class="w-24 bg-gray-100 flex flex-col items-center justify-center p-4 border-r border-gray-300">
+                            <p class="text-gray-400 text-xs font-bold uppercase mb-1">Fri</p>
+                            <p class="text-gray-500 text-3xl font-black">5</p>
+                        </div>
+                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
+                            <span class="material-symbols-outlined text-gray-400 text-4xl mb-2">add_circle</span>
+                            <p class="text-gray-500 font-bold text-sm">스타일 추가</p>
+                            <p class="text-gray-400 text-xs">금요일 저녁 룩 추천</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekend - Combined -->
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border-2 border-dashed border-amber-300 overflow-hidden hover:border-primary/50 transition-all cursor-pointer">
+                    <div class="flex">
+                        <div class="w-24 bg-gradient-to-br from-amber-100 to-orange-100 flex flex-col items-center justify-center p-4 border-r border-amber-300">
+                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">주말</p>
+                            <p class="text-gray-900 text-2xl font-black">6-7</p>
+                            <span class="text-xl mt-1">🌴</span>
+                        </div>
+                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
+                            <span class="material-symbols-outlined text-amber-600 text-4xl mb-2">wb_sunny</span>
+                            <p class="text-gray-900 font-bold text-sm">주말 레저룩</p>
+                            <p class="text-gray-600 text-xs">편안한 스타일 준비</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue Button -->
+        <div class="fixed bottom-0 inset-x-0 p-6 bg-gradient-to-t from-white via-white to-transparent z-50">
+            <button onclick="navigateTo('elite-bridge')" class="btn-3d w-full py-5 bg-gradient-to-r from-primary via-pink-500 to-primary text-white rounded-2xl font-black text-base shadow-xl hover:shadow-2xl transition-shadow">
+                쇼핑하러 가기 →
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================
+     SCREEN 6: ELITE BRIDGE (v41 Style)
+     ======================================== -->
+<div id="screen-elite-bridge" class="screen">
+    <div class="relative flex h-screen w-full flex-col overflow-hidden" style="background: linear-gradient(135deg, #181611 0%, #2a2520 100%);">
+        <!-- Top Navigation -->
+        <div class="flex items-center bg-transparent p-4 pb-2 justify-between z-10">
+            <button onclick="navigateBack()" class="text-white flex size-12 shrink-0 items-center cursor-pointer">
+                <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+            </button>
+            <h2 class="text-white/80 text-sm font-medium tracking-[0.2em] uppercase flex-1 text-center">Elite Access</h2>
+            <div class="flex items-center gap-2">
+                <select class="bg-white/10 text-white text-xs px-2 py-1 rounded border border-white/20 focus:outline-none cursor-pointer">
+                    <option value="ko">🇰🇷</option>
+                    <option value="en">🇺🇸</option>
+                </select>
+                <button class="bg-primary-gold text-black text-xs font-bold px-3 py-1.5 rounded">
+                    Sign In
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col items-center justify-center px-6 relative">
+            <!-- Headline -->
+            <div class="mb-12 text-center">
+                <h1 class="text-white tracking-tight text-[36px] font-black leading-tight mb-2">
+                    The Final Stitch
+                </h1>
+                <p class="text-white/60 text-base font-normal italic">
+                    맞춤형 컬렉션이 준비되었습니다
+                </p>
+            </div>
+
+            <!-- 3D Elite Card -->
+            <div class="relative w-full max-w-sm aspect-[1.58/1] rounded-xl p-8 flex flex-col justify-between overflow-hidden" 
+                style="background: linear-gradient(135deg, #2a2a2a 0%, #000 100%); border: 1px solid rgba(244, 192, 37, 0.3); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 15px rgba(244, 192, 37, 0.1);">
+                
+                <!-- Glossy Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
+                
+                <!-- Card Header -->
+                <div class="flex justify-between items-start z-10">
+                    <div class="flex flex-col">
+                        <span class="text-primary-gold text-[10px] tracking-[0.3em] uppercase font-bold">StyleSync Ai.</span>
+                        <span class="text-white text-2xl font-bold tracking-tight">Elite</span>
+                    </div>
+                    <div class="w-12 h-10 bg-primary-gold/20 rounded-md flex items-center justify-center border border-primary-gold/40">
+                        <span class="material-symbols-outlined text-primary-gold">nfc</span>
+                    </div>
+                </div>
+
+                <!-- Card Footer -->
+                <div class="z-10 mt-auto">
+                    <div class="h-1 w-full bg-gradient-to-r from-primary-gold to-transparent opacity-40 mb-4 rounded-full"></div>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-[10px] text-white/40 uppercase tracking-widest">Member</p>
+                            <p class="text-lg text-white/90 font-medium">PREMIUM USER</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] text-white/40 uppercase tracking-widest">Elite ID</p>
+                            <p class="text-sm text-primary-gold font-mono tracking-tighter">SAI-2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Glow Effect -->
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary-gold/10 rounded-full blur-3xl"></div>
+            </div>
+
+            <!-- Background Glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none opacity-20 blur-[100px] bg-primary-gold/30 rounded-full"></div>
+        </div>
+
+        <!-- Footer CTA -->
+        <div class="px-6 pb-16 pt-6 flex flex-col items-center gap-6 z-10">
+            <p class="text-white/50 text-xs font-light tracking-[0.1em] uppercase text-center max-w-[280px]">
+                THE LOOK의 보안 결제 환경으로 이동합니다
+            </p>
+
+            <!-- Purchase Button -->
+            <button onclick="completePurchase()" class="btn-3d-gold w-full max-w-[480px] h-16 flex items-center justify-center rounded-xl bg-primary-gold text-background-dark gap-3 px-8 text-lg font-extrabold tracking-[0.05em] uppercase border-t border-white/30 hover:bg-primary-gold/90">
+                <span class="material-symbols-outlined text-2xl">shopping_bag</span>
+                <span class="truncate">Purchase at The Look</span>
+            </button>
+
+            <!-- Decorative Dots -->
+            <div class="flex gap-2">
+                <div class="size-1.5 rounded-full bg-white/20"></div>
+                <div class="size-1.5 rounded-full bg-white/20"></div>
+                <div class="size-1.5 rounded-full bg-white/20"></div>
+                <div class="size-1.5 rounded-full bg-primary-gold"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================
+     JAVASCRIPT - STATE & NAVIGATION
+     ======================================== -->
+<script>
+// ============================================
+// STATE MANAGEMENT
+// ============================================
+const AppState = {
+    currentScreen: 'splash',
+    screenHistory: [],
+    userData: {
+        bodyShape: null,
+        texture: null,
+        height: null,
+        weight: null,
+        scanMode: 'camera',
+        uploadedPhotos: [],
+    },
+    weather: {
+        temp: 22,
+        humidity: 45,
+        season: 'spring',
+        timeOfDay: 'afternoon',
+        condition: 'sunny'
+    }
+};
+
+// Save to localStorage
+function saveState() {
+    localStorage.setItem('stitchAIState', JSON.stringify(AppState));
+}
+
+// Load from localStorage
+function loadState() {
+    const saved = localStorage.getItem('stitchAIState');
+    if (saved) {
+        Object.assign(AppState, JSON.parse(saved));
+    }
+}
+
+// ============================================
+// NAVIGATION SYSTEM
+// ============================================
+function navigateTo(screenId) {
+    const currentScreenEl = document.querySelector('.screen.active');
+    const nextScreenEl = document.getElementById(`screen-${screenId}`);
+    
+    if (!nextScreenEl) {
+        console.error('Screen not found:', screenId);
+        return;
+    }
+    
+    // Save current screen to history
+    AppState.screenHistory.push(AppState.currentScreen);
+    AppState.currentScreen = screenId;
+    
+    // Transition
+    currentScreenEl.classList.remove('active');
+    nextScreenEl.classList.add('active');
+    
+    // Scroll to top
+    window.scrollTo(0, 0);
+    
+    // Initialize weather on Live Fitting page
+    if (screenId === 'live-fitting') {
+        setTimeout(() => updateWeatherRecommendation(), 100);
+    }
+    
+    saveState();
+    console.log('Navigated to:', screenId);
+}
+
+function navigateBack() {
+    if (AppState.screenHistory.length === 0) return;
+    
+    const previousScreen = AppState.screenHistory.pop();
+    const currentScreenEl = document.querySelector('.screen.active');
+    const previousScreenEl = document.getElementById(`screen-${previousScreen}`);
+    
+    AppState.currentScreen = previousScreen;
+    
+    currentScreenEl.classList.remove('active');
+    previousScreenEl.classList.add('active');
+    
+    window.scrollTo(0, 0);
+    saveState();
+    console.log('Navigated back to:', previousScreen);
+}
+
+// ============================================
+// SELECTION FUNCTIONS
+// ============================================
+function selectBodyShape(shape) {
+    // Remove active class from all
+    document.querySelectorAll('.body-shape-card').forEach(card => {
+        card.classList.remove('border-primary', 'bg-primary/10');
+        card.classList.add('border-border-dark');
+    });
+    
+    // Add active to selected
+    const selected = document.querySelector(`[data-shape="${shape}"]`);
+    if (selected) {
+        selected.classList.remove('border-border-dark');
+        selected.classList.add('border-primary', 'bg-primary/10');
+    }
+    
+    AppState.userData.bodyShape = shape;
+    saveState();
+    console.log('Body shape selected:', shape);
+}
+
+function selectTexture(texture) {
+    AppState.userData.texture = texture;
+    saveState();
+    
+    // Visual feedback
+    document.querySelectorAll('.texture-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-primary-green');
+    });
+    event.currentTarget.classList.add('ring-2', 'ring-primary-green');
+    
+    console.log('Texture selected:', texture);
+}
+
+function saveHeight(value) {
+    AppState.userData.height = value;
+    saveState();
+    console.log('Height saved:', value);
+}
+
+function saveWeight(value) {
+    AppState.userData.weight = value;
+    saveState();
+    console.log('Weight saved:', value);
+}
+
+function switchScanMode(mode) {
+    AppState.userData.scanMode = mode;
+    saveState();
+    
+    // Update tab UI
+    document.querySelectorAll('.scan-tab').forEach(tab => {
+        tab.classList.remove('bg-primary', 'text-white');
+        tab.classList.add('text-white/60');
+    });
+    
+    const activeTab = document.getElementById(`tab-${mode}`);
+    if (activeTab) {
+        activeTab.classList.add('bg-primary', 'text-white');
+        activeTab.classList.remove('text-white/60');
+    }
+    
+    // Toggle mode content
+    document.querySelectorAll('.scan-mode').forEach(modeEl => {
+        modeEl.classList.add('hidden');
+    });
+    
+    const activeMode = document.getElementById(`mode-${mode}`);
+    if (activeMode) {
+        activeMode.classList.remove('hidden');
+    }
+    
+    // Update status text
+    const statusTitle = document.getElementById('scan-status-title');
+    const statusDesc = document.getElementById('scan-status-desc');
+    const buttonText = document.getElementById('scan-button-text');
+    
+    if (mode === 'camera') {
+        statusTitle.textContent = '스캔 준비 완료';
+        statusDesc.textContent = 'AI가 얼굴형, 피부톤, 헤어 스타일을 실시간으로 분석합니다';
+        buttonText.textContent = '분석 시작';
+    } else {
+        statusTitle.textContent = '사진 분석 대기중';
+        statusDesc.textContent = '업로드된 사진에서 스타일 선호도와 패션 취향을 분석합니다';
+        buttonText.textContent = '사진 분석 시작';
+    }
+    
+    console.log('Scan mode switched to:', mode);
+}
+
+function handleFileUpload(event) {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+    
+    const previewGrid = document.getElementById('photo-preview-grid');
+    previewGrid.classList.remove('hidden');
+    
+    Array.from(files).forEach((file, index) => {
+        if (AppState.userData.uploadedPhotos.length >= 5) {
+            alert('최대 5장까지만 업로드 가능합니다.');
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const photoData = {
+                id: Date.now() + index,
+                url: e.target.result,
+                name: file.name
+            };
+            
+            AppState.userData.uploadedPhotos.push(photoData);
+            saveState();
+            
+            // Create preview element
+            const photoDiv = document.createElement('div');
+            photoDiv.className = 'relative aspect-square rounded-xl overflow-hidden border-2 border-primary/30';
+            photoDiv.innerHTML = `
+                <img src="${photoData.url}" class="w-full h-full object-cover" />
+                <button onclick="removePhoto(${photoData.id})" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                    <span class="material-symbols-outlined text-sm">close</span>
+                </button>
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+                    <p class="text-white text-[10px] font-bold truncate">${file.name}</p>
+                </div>
+            `;
+            
+            previewGrid.appendChild(photoDiv);
+            
+            // Update status
+            const statusTitle = document.getElementById('scan-status-title');
+            statusTitle.textContent = `${AppState.userData.uploadedPhotos.length}장의 사진 업로드됨`;
+        };
+        
+        reader.readAsDataURL(file);
+    });
+}
+
+function removePhoto(photoId) {
+    AppState.userData.uploadedPhotos = AppState.userData.uploadedPhotos.filter(p => p.id !== photoId);
+    saveState();
+    
+    // Rebuild preview grid
+    const previewGrid = document.getElementById('photo-preview-grid');
+    previewGrid.innerHTML = '';
+    
+    if (AppState.userData.uploadedPhotos.length === 0) {
+        previewGrid.classList.add('hidden');
+        document.getElementById('scan-status-title').textContent = '사진 분석 대기중';
+    } else {
+        AppState.userData.uploadedPhotos.forEach(photo => {
+            const photoDiv = document.createElement('div');
+            photoDiv.className = 'relative aspect-square rounded-xl overflow-hidden border-2 border-primary/30';
+            photoDiv.innerHTML = `
+                <img src="${photo.url}" class="w-full h-full object-cover" />
+                <button onclick="removePhoto(${photo.id})" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                    <span class="material-symbols-outlined text-sm">close</span>
+                </button>
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+                    <p class="text-white text-[10px] font-bold truncate">${photo.name}</p>
+                </div>
+            `;
+            previewGrid.appendChild(photoDiv);
+        });
+        
+        document.getElementById('scan-status-title').textContent = `${AppState.userData.uploadedPhotos.length}장의 사진 업로드됨`;
+    }
+}
+
+function updateWeatherRecommendation() {
+    // Get current weather (실제로는 API에서 가져올 수 있음)
+    const now = new Date();
+    const hour = now.getHours();
+    const month = now.getMonth() + 1;
+    
+    // Determine season
+    let season = 'spring';
+    if (month >= 3 && month <= 5) season = 'spring';
+    else if (month >= 6 && month <= 8) season = 'summer';
+    else if (month >= 9 && month <= 11) season = 'autumn';
+    else season = 'winter';
+    
+    // Determine time of day
+    let timeOfDay = '오전';
+    if (hour >= 12 && hour < 18) timeOfDay = '오후';
+    else if (hour >= 18 && hour < 21) timeOfDay = '저녁';
+    else if (hour >= 21 || hour < 6) timeOfDay = '밤';
+    
+    // Simulate temperature based on season
+    let temp = 22;
+    let humidity = 45;
+    let condition = 'sunny';
+    let icon = '☀️';
+    
+    switch(season) {
+        case 'spring':
+            temp = 15 + Math.floor(Math.random() * 10);
+            humidity = 40 + Math.floor(Math.random() * 20);
+            condition = Math.random() > 0.5 ? 'sunny' : 'cloudy';
+            icon = condition === 'sunny' ? '☀️' : '☁️';
+            break;
+        case 'summer':
+            temp = 25 + Math.floor(Math.random() * 10);
+            humidity = 60 + Math.floor(Math.random() * 20);
+            condition = Math.random() > 0.7 ? 'rainy' : 'sunny';
+            icon = condition === 'rainy' ? '🌧️' : '☀️';
+            break;
+        case 'autumn':
+            temp = 10 + Math.floor(Math.random() * 10);
+            humidity = 50 + Math.floor(Math.random() * 15);
+            condition = 'cloudy';
+            icon = '🍂';
+            break;
+        case 'winter':
+            temp = -5 + Math.floor(Math.random() * 10);
+            humidity = 30 + Math.floor(Math.random() * 20);
+            condition = Math.random() > 0.5 ? 'snowy' : 'cloudy';
+            icon = condition === 'snowy' ? '❄️' : '☁️';
+            break;
+    }
+    
+    AppState.weather = { temp, humidity, season, timeOfDay, condition };
+    saveState();
+    
+    // Update UI
+    document.getElementById('weather-temp').textContent = `${temp}°C`;
+    document.getElementById('weather-icon').textContent = icon;
+    document.getElementById('weather-season').textContent = 
+        season === 'spring' ? '봄' : 
+        season === 'summer' ? '여름' : 
+        season === 'autumn' ? '가을' : '겨울';
+    document.getElementById('weather-humidity').textContent = `${humidity}%`;
+    document.getElementById('weather-time').textContent = timeOfDay;
+    
+    // Determine recommended fabric based on weather
+    let recommendedFabrics = [];
+    let reason = '';
+    let breathability = 50;
+    let warmth = 50;
+    let comfort = 50;
+    
+    if (temp < 5) {
+        // 추운 날씨
+        recommendedFabrics = ['울', '캐시미어'];
+        reason = '추운 날씨에 보온성이 뛰어난 원단입니다. 따뜻함을 유지하면서 우아한 실루엣을 연출합니다.';
+        breathability = 30;
+        warmth = 95;
+        comfort = 85;
+        
+        // 추천 배지 추가
+        document.querySelectorAll('[data-fabric]').forEach(btn => {
+            const badge = btn.querySelector('div:last-child');
+            if (badge && badge.textContent === '추천') badge.remove();
+        });
+        const woolBtn = document.querySelector('[data-fabric="wool"]');
+        if (woolBtn && !woolBtn.querySelector('div:last-child')?.textContent?.includes('추천')) {
+            woolBtn.insertAdjacentHTML('beforeend', '<div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>');
+        }
+    } else if (temp < 15) {
+        // 서늘한 날씨
+        recommendedFabrics = ['코튼', '울 블렌드'];
+        reason = '서늘한 날씨에 적합한 중간 두께의 원단입니다. 활동성과 보온성의 균형이 좋습니다.';
+        breathability = 60;
+        warmth = 65;
+        comfort = 80;
+        
+        document.querySelectorAll('[data-fabric]').forEach(btn => {
+            const badge = btn.querySelector('div:last-child');
+            if (badge && badge.textContent === '추천') badge.remove();
+        });
+        const cottonBtn = document.querySelector('[data-fabric="cotton"]');
+        if (cottonBtn && !cottonBtn.querySelector('div:last-child')?.textContent?.includes('추천')) {
+            cottonBtn.insertAdjacentHTML('beforeend', '<div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>');
+        }
+    } else if (temp < 25) {
+        // 쾌적한 날씨
+        recommendedFabrics = ['린넨', '코튼'];
+        reason = '현재 온도와 습도에 가장 적합한 원단입니다. 통기성이 뛰어나 쾌적함을 유지합니다.';
+        breathability = 90;
+        warmth = 30;
+        comfort = 95;
+        
+        document.querySelectorAll('[data-fabric]').forEach(btn => {
+            const badge = btn.querySelector('div:last-child');
+            if (badge && badge.textContent === '추천') badge.remove();
+        });
+        const linenBtn = document.querySelector('[data-fabric="linen"]');
+        const cottonBtn = document.querySelector('[data-fabric="cotton"]');
+        if (linenBtn && !linenBtn.querySelector('div:last-child')?.textContent?.includes('추천')) {
+            linenBtn.insertAdjacentHTML('beforeend', '<div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>');
+        }
+        if (cottonBtn && !cottonBtn.querySelector('div:last-child')?.textContent?.includes('추천')) {
+            cottonBtn.insertAdjacentHTML('beforeend', '<div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>');
+        }
+    } else {
+        // 더운 날씨
+        recommendedFabrics = ['린넨', '실크'];
+        reason = '무더운 날씨에 최적화된 초경량 원단입니다. 최고의 통기성으로 시원함을 제공합니다.';
+        breathability = 95;
+        warmth = 10;
+        comfort = 90;
+        
+        document.querySelectorAll('[data-fabric]').forEach(btn => {
+            const badge = btn.querySelector('div:last-child');
+            if (badge && badge.textContent === '추천') badge.remove();
+        });
+        const linenBtn = document.querySelector('[data-fabric="linen"]');
+        const silkBtn = document.querySelector('[data-fabric="silk"]');
+        if (linenBtn && !linenBtn.querySelector('div:last-child')?.textContent?.includes('추천')) {
+            linenBtn.insertAdjacentHTML('beforeend', '<div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>');
+        }
+        if (silkBtn && !silkBtn.querySelector('div:last-child')?.textContent?.includes('추천')) {
+            silkBtn.insertAdjacentHTML('beforeend', '<div class="absolute -top-1 -right-1 bg-primary-green text-black text-[8px] font-black px-1.5 py-0.5 rounded-full">추천</div>');
+        }
+    }
+    
+    document.getElementById('recommended-fabric').textContent = recommendedFabrics.join(' & ');
+    document.getElementById('recommendation-reason').textContent = reason;
+    document.getElementById('fabric-breathability').style.width = `${breathability}%`;
+    document.getElementById('fabric-warmth').style.width = `${warmth}%`;
+    document.getElementById('fabric-comfort').style.width = `${comfort}%`;
+    
+    // Update percentages
+    document.getElementById('fabric-breathability').nextElementSibling.textContent = `${breathability}%`;
+    document.getElementById('fabric-warmth').nextElementSibling.textContent = `${warmth}%`;
+    document.getElementById('fabric-comfort').nextElementSibling.textContent = `${comfort}%`;
+    
+    console.log('Weather recommendation updated:', AppState.weather);
+}
+
+function applyProduct(imageUrl, productName, price) {
+    // Show loading
+    const loading = document.getElementById('look-loading');
+    if (loading) {
+        loading.classList.remove('hidden');
+    }
+    
+    // Simulate loading time
+    setTimeout(() => {
+        // Update main look image
+        const mainImage = document.getElementById('main-look-image');
+        if (mainImage) {
+            mainImage.src = imageUrl;
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.style.opacity = '1';
+            }, 50);
+        }
+        
+        // Update description
+        const description = document.getElementById('look-description');
+        if (description) {
+            description.textContent = `${productName}을(를) 적용한 새로운 스타일입니다`;
+        }
+        
+        // Hide loading
+        if (loading) {
+            loading.classList.add('hidden');
+        }
+        
+        // Visual feedback on product card
+        const allCards = document.querySelectorAll('.product-card');
+        allCards.forEach(card => {
+            card.classList.remove('ring-2', 'ring-primary');
+        });
+        event.currentTarget.classList.add('ring-2', 'ring-primary');
+        
+        console.log('Product applied:', productName, price);
+    }, 800);
+}
+
+// ============================================
+// COMPLETION
+// ============================================
+function completePurchase() {
+    console.log('Profile completed!', AppState.userData);
+    alert('🎉 구매가 완료되었습니다!\n\nTHE LOOK에서 주문을 확인하세요.');
+    
+    // Could redirect to THE LOOK here
+    // window.location.href = 'https://thelook.com/...';
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    loadState();
+    
+    // Restore height and weight values if they exist
+    if (AppState.userData.height) {
+        const heightInput = document.getElementById('height-input');
+        if (heightInput) heightInput.value = AppState.userData.height;
+    }
+    if (AppState.userData.weight) {
+        const weightInput = document.getElementById('weight-input');
+        if (weightInput) weightInput.value = AppState.userData.weight;
+    }
+    
+    // Initialize weather recommendation on Live Fitting page
+    if (AppState.currentScreen === 'live-fitting') {
+        updateWeatherRecommendation();
+    }
+    
+    console.log('Stitch AI Stylist - Complete Journey Initialized');
+    console.log('Current State:', AppState);
+});
+
+// Prevent accidental navigation
+window.addEventListener('beforeunload', function(e) {
+    saveState();
+});
+</script>
+
+</body>
+</html>
