@@ -147,6 +147,16 @@
             100% { background-position: -200% 0; }
         }
         
+        /* Tactile Plus Button */
+        .tactile-plus {
+            box-shadow: 0 4px 0 #600eb3, 0 8px 15px rgba(0,0,0,0.1);
+            transition: transform 0.1s ease;
+        }
+        .tactile-plus:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #600eb3, 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
         /* Hide scrollbar */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
@@ -1026,191 +1036,155 @@
 </div>
 
 <!-- ========================================
-     SCREEN 5: WEEKLY SYNC (v40 Style - White Background)
+     SCREEN 5: WEEKLY SYNC (v40 Original Style)
      ======================================== -->
 <div id="screen-weekly-sync" class="screen">
-    <div class="relative mx-auto min-h-screen max-w-[480px] flex flex-col bg-white">
+    <div class="relative mx-auto min-h-screen max-w-[480px] flex flex-col bg-white dark:bg-background-dark">
         <!-- Top Navigation -->
-        <div class="flex items-center bg-white p-4 pb-2 justify-between sticky top-0 z-50 border-b border-gray-100">
-            <button onclick="navigateBack()" class="text-gray-900 flex size-12 shrink-0 items-center justify-start cursor-pointer">
+        <div class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50">
+            <button onclick="navigateBack()" class="text-[#141118] dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer">
                 <span class="material-symbols-outlined">arrow_back</span>
             </button>
-            <h2 class="text-gray-900 text-lg font-bold leading-tight tracking-tight flex-1 text-center">
+            <h2 class="text-[#141118] dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">
                 Weekly Style Sync
             </h2>
-            <div class="flex items-center gap-2">
-                <select class="bg-gray-100 text-gray-900 text-xs px-2 py-1 rounded border border-gray-200 focus:outline-none cursor-pointer">
-                    <option value="ko">🇰🇷</option>
-                    <option value="en">🇺🇸</option>
-                </select>
-                <button class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded">
-                    Sign In
-                </button>
-            </div>
+            <button onclick="showWeeklyOptions()" class="size-12 flex items-center justify-end active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[#141118] dark:text-white">more_horiz</span>
+            </button>
         </div>
 
         <!-- Progress Section -->
-        <div class="flex flex-col gap-3 p-6 bg-gradient-to-br from-purple-50 to-pink-50 border-b border-gray-100">
-            <div class="flex gap-6 justify-between items-center">
+        <div class="flex flex-col gap-3 p-4">
+            <div class="flex gap-6 justify-between">
                 <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary animate-pulse">auto_fix_high</span>
-                    <p class="text-gray-900 text-base font-bold">매직 필 싱크중...</p>
+                    <p class="text-[#141118] dark:text-white text-base font-medium leading-normal">Magic Fill Syncing...</p>
                 </div>
-                <p class="text-primary text-base font-black">100%</p>
+                <p class="text-primary text-sm font-bold leading-normal">85%</p>
             </div>
-            <div class="rounded-full bg-gray-200 h-3 overflow-hidden">
-                <div class="h-full rounded-full bg-gradient-to-r from-primary via-pink-500 to-primary progress-bar" style="width: 100%;"></div>
+            <div class="rounded-full bg-primary/10 h-2.5 overflow-hidden">
+                <div class="h-full rounded-full bg-primary progress-bar" style="width: 85%;"></div>
             </div>
-            <p class="text-gray-600 text-sm">
-                당신의 한 주를 빛나게 할 스타일이 준비되었습니다 ✨
+            <p class="text-[#756189] dark:text-[#a292b3] text-sm font-normal leading-normal italic">
+                Shimmering purple particles populating your week
             </p>
         </div>
 
-        <!-- Date Header -->
-        <div class="px-6 pt-6 pb-4 bg-white">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h3 class="text-gray-900 text-2xl font-black mb-1">2월 1주차</h3>
-                    <p class="text-gray-500 text-sm">2026년 2월 1일 - 2월 7일</p>
+        <!-- Weekly Grid -->
+        <div class="grid grid-cols-2 gap-3 p-4">
+            <!-- Monday - Filled -->
+            <div class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square border-2 border-primary/20" 
+                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400&q=80");'>
+                <p class="text-white text-sm font-bold uppercase tracking-widest">Mon</p>
+                <div class="absolute top-2 right-2 bg-primary text-white p-1 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[14px]">check</span>
                 </div>
-                <button class="bg-gradient-to-r from-primary to-pink-500 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg hover:shadow-xl transition-shadow">
-                    전체 채우기
+            </div>
+
+            <!-- Tuesday - Filled -->
+            <div class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square border-2 border-primary/20" 
+                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80");'>
+                <p class="text-white text-sm font-bold uppercase tracking-widest">Tue</p>
+                <div class="absolute top-2 right-2 bg-primary text-white p-1 rounded-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[14px]">check</span>
+                </div>
+            </div>
+
+            <!-- Wednesday - Magic Fill Effect -->
+            <div class="relative bg-primary/5 dark:bg-primary/20 flex flex-col gap-3 rounded-xl justify-center items-center p-4 aspect-square border-2 border-dashed border-primary/40 shimmer-bg">
+                <div class="flex flex-col items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-4xl animate-pulse">auto_fix_high</span>
+                    <p class="text-primary text-xs font-bold uppercase tracking-widest">Syncing Wed</p>
+                </div>
+            </div>
+
+            <!-- Thursday - Empty with Tactile Button -->
+            <div class="relative bg-background-light dark:bg-white/5 flex flex-col gap-3 rounded-xl justify-center items-center p-4 aspect-square border border-gray-100 dark:border-white/10">
+                <p class="absolute top-3 left-4 text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-widest">Thu</p>
+                <button onclick="addDayStyle('thursday')" class="tactile-plus bg-primary text-white size-12 rounded-lg flex items-center justify-center hover:bg-primary/90">
+                    <span class="material-symbols-outlined">add</span>
+                </button>
+            </div>
+
+            <!-- Friday - Empty with Tactile Button -->
+            <div class="relative bg-background-light dark:bg-white/5 flex flex-col gap-3 rounded-xl justify-center items-center p-4 aspect-square border border-gray-100 dark:border-white/10">
+                <p class="absolute top-3 left-4 text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-widest">Fri</p>
+                <button onclick="addDayStyle('friday')" class="tactile-plus bg-primary text-white size-12 rounded-lg flex items-center justify-center hover:bg-primary/90">
+                    <span class="material-symbols-outlined">add</span>
+                </button>
+            </div>
+
+            <!-- Weekend Double Slot -->
+            <div class="relative bg-background-light dark:bg-white/5 flex flex-col gap-3 rounded-xl justify-center items-center p-4 aspect-square border border-gray-100 dark:border-white/10">
+                <p class="absolute top-3 left-4 text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase tracking-widest">Weekend</p>
+                <button onclick="addDayStyle('weekend')" class="tactile-plus bg-primary text-white size-12 rounded-lg flex items-center justify-center hover:bg-primary/90">
+                    <span class="material-symbols-outlined">auto_awesome</span>
                 </button>
             </div>
         </div>
 
-        <!-- Weekly Calendar Grid -->
-        <div class="px-6 pb-32 bg-white">
-            <div class="grid grid-cols-1 gap-4">
-                <!-- Monday -->
-                <div class="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-primary transition-all hover:shadow-lg">
-                    <div class="flex">
-                        <div class="w-24 bg-gradient-to-br from-purple-100 to-pink-100 flex flex-col items-center justify-center p-4 border-r border-gray-200">
-                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Mon</p>
-                            <p class="text-gray-900 text-3xl font-black">1</p>
-                            <div class="mt-2 w-2 h-2 rounded-full bg-primary"></div>
-                        </div>
-                        <div class="flex-1 p-4 bg-cover bg-center relative" 
-                            style='background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.3)), url("https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&q=80");'>
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <p class="text-gray-900 font-bold text-base mb-1">캐주얼 오피스룩</p>
-                                    <p class="text-gray-600 text-xs mb-2">린넨 셔츠 + 슬랙스</p>
-                                    <div class="flex gap-1">
-                                        <span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">22°C</span>
-                                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full">완료</span>
-                                    </div>
-                                </div>
-                                <button class="bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all">
-                                    <span class="material-symbols-outlined text-gray-700 text-lg">edit</span>
-                                </button>
+        <!-- Success Drop Magazine Feature -->
+        <div class="p-4 mt-4">
+            <div class="relative group">
+                <!-- Decorative Layer for Drop Effect -->
+                <div class="absolute -top-4 -left-4 -right-4 -bottom-4 bg-primary/5 rounded-[2rem] -z-10 blur-xl"></div>
+                <div class="bg-white dark:bg-background-dark border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl transition-all duration-500">
+                    <!-- Header Image with Text -->
+                    <div class="bg-cover bg-center flex flex-col justify-end min-h-[400px]" 
+                        style='background-image: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%), url("https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=85");'>
+                        <div class="p-6">
+                            <div class="inline-flex items-center gap-2 bg-primary px-3 py-1 rounded-full mb-3 shadow-lg">
+                                <span class="material-symbols-outlined text-white text-sm">verified</span>
+                                <span class="text-white text-[10px] font-bold uppercase tracking-widest">Success Drop</span>
                             </div>
+                            <h1 class="text-white text-4xl font-bold leading-[1.1] mb-2">Success Drop: Your Personal Edition</h1>
+                            <p class="text-white/80 text-sm italic font-light">Customized curated looks for your upcoming week.</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Tuesday -->
-                <div class="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden hover:border-primary transition-all hover:shadow-lg">
-                    <div class="flex">
-                        <div class="w-24 bg-gradient-to-br from-blue-100 to-cyan-100 flex flex-col items-center justify-center p-4 border-r border-gray-200">
-                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Tue</p>
-                            <p class="text-gray-900 text-3xl font-black">2</p>
-                            <div class="mt-2 w-2 h-2 rounded-full bg-blue-500"></div>
-                        </div>
-                        <div class="flex-1 p-4 bg-cover bg-center relative" 
-                            style='background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.3)), url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80");'>
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <p class="text-gray-900 font-bold text-base mb-1">비즈니스 미팅</p>
-                                    <p class="text-gray-600 text-xs mb-2">블레이저 + 드레스 팬츠</p>
-                                    <div class="flex gap-1">
-                                        <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full">20°C</span>
-                                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full">완료</span>
-                                    </div>
-                                </div>
-                                <button class="bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white transition-all">
-                                    <span class="material-symbols-outlined text-gray-700 text-lg">edit</span>
-                                </button>
+                    
+                    <!-- Magazine Details -->
+                    <div class="p-6 bg-white dark:bg-white/5">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h3 class="text-[#141118] dark:text-white text-2xl font-bold italic">StyleSync Issue #07</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-xs">Generated February 1, 2026</p>
                             </div>
+                            <button onclick="downloadMagazine()" class="size-12 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary/10 active:scale-90 transition-all">
+                                <span class="material-symbols-outlined text-primary">download</span>
+                            </button>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Wednesday - Magic Fill -->
-                <div class="bg-gradient-to-br from-primary/5 to-pink-50 rounded-2xl border-2 border-dashed border-primary/40 overflow-hidden shimmer-bg relative">
-                    <div class="flex">
-                        <div class="w-24 bg-gradient-to-br from-purple-100 to-pink-100 flex flex-col items-center justify-center p-4 border-r border-primary/20">
-                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">Wed</p>
-                            <p class="text-gray-900 text-3xl font-black">3</p>
-                            <span class="material-symbols-outlined text-primary text-2xl mt-1 animate-pulse">auto_fix_high</span>
-                        </div>
-                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-white rounded-2xl shadow-lg flex items-center justify-center mb-3 mx-auto">
-                                    <span class="material-symbols-outlined text-primary text-3xl animate-pulse">auto_fix_high</span>
-                                </div>
-                                <p class="text-gray-900 font-bold text-base mb-1">AI 스타일 생성중</p>
-                                <p class="text-gray-600 text-xs mb-3">날씨와 일정에 맞춰 자동 추천</p>
-                                <button class="bg-gradient-to-r from-primary to-pink-500 text-white text-xs font-bold px-4 py-2 rounded-full hover:shadow-lg transition-shadow">
-                                    지금 생성
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Thursday - Empty -->
-                <div class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 overflow-hidden hover:border-primary/50 transition-all cursor-pointer">
-                    <div class="flex">
-                        <div class="w-24 bg-gray-100 flex flex-col items-center justify-center p-4 border-r border-gray-300">
-                            <p class="text-gray-400 text-xs font-bold uppercase mb-1">Thu</p>
-                            <p class="text-gray-500 text-3xl font-black">4</p>
-                        </div>
-                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
-                            <span class="material-symbols-outlined text-gray-400 text-4xl mb-2">add_circle</span>
-                            <p class="text-gray-500 font-bold text-sm">스타일 추가</p>
-                            <p class="text-gray-400 text-xs">클릭하여 새 룩 만들기</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Friday - Empty -->
-                <div class="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 overflow-hidden hover:border-primary/50 transition-all cursor-pointer">
-                    <div class="flex">
-                        <div class="w-24 bg-gray-100 flex flex-col items-center justify-center p-4 border-r border-gray-300">
-                            <p class="text-gray-400 text-xs font-bold uppercase mb-1">Fri</p>
-                            <p class="text-gray-500 text-3xl font-black">5</p>
-                        </div>
-                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
-                            <span class="material-symbols-outlined text-gray-400 text-4xl mb-2">add_circle</span>
-                            <p class="text-gray-500 font-bold text-sm">스타일 추가</p>
-                            <p class="text-gray-400 text-xs">금요일 저녁 룩 추천</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Weekend - Combined -->
-                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border-2 border-dashed border-amber-300 overflow-hidden hover:border-primary/50 transition-all cursor-pointer">
-                    <div class="flex">
-                        <div class="w-24 bg-gradient-to-br from-amber-100 to-orange-100 flex flex-col items-center justify-center p-4 border-r border-amber-300">
-                            <p class="text-gray-500 text-xs font-bold uppercase mb-1">주말</p>
-                            <p class="text-gray-900 text-2xl font-black">6-7</p>
-                            <span class="text-xl mt-1">🌴</span>
-                        </div>
-                        <div class="flex-1 p-4 flex flex-col items-center justify-center">
-                            <span class="material-symbols-outlined text-amber-600 text-4xl mb-2">wb_sunny</span>
-                            <p class="text-gray-900 font-bold text-sm">주말 레저룩</p>
-                            <p class="text-gray-600 text-xs">편안한 스타일 준비</p>
-                        </div>
+                        <p class="text-[#141118] dark:text-gray-300 text-base leading-relaxed mb-6">
+                            Based on your schedule and the latest Parisian street style trends, we've unlocked a week of confidence-boosting ensembles.
+                        </p>
+                        <button onclick="viewMagazine()" class="btn-3d w-full bg-primary text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-primary/90">
+                            View Full Magazine
+                            <span class="material-symbols-outlined">menu_book</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Continue Button -->
-        <div class="fixed bottom-0 inset-x-0 p-6 bg-gradient-to-t from-white via-white to-transparent z-50">
-            <button onclick="navigateTo('elite-bridge')" class="btn-3d w-full py-5 bg-gradient-to-r from-primary via-pink-500 to-primary text-white rounded-2xl font-black text-base shadow-xl hover:shadow-2xl transition-shadow">
-                쇼핑하러 가기 →
+        <!-- Footer Spacer -->
+        <div class="h-10"></div>
+
+        <!-- Bottom Navigation Bar -->
+        <div class="mt-auto border-t border-gray-100 dark:border-white/5 bg-white/80 dark:bg-background-dark/80 backdrop-blur-lg flex justify-around p-4 sticky bottom-0 z-50">
+            <button onclick="navigateTo('weekly-sync')" class="flex flex-col items-center gap-1 text-primary">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Sync</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                <span class="material-symbols-outlined">checkroom</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Closet</span>
+            </button>
+            <button class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                <span class="material-symbols-outlined">explore</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Inspire</span>
+            </button>
+            <button onclick="navigateTo('elite-bridge')" class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                <span class="material-symbols-outlined">person</span>
+                <span class="text-[10px] font-bold uppercase tracking-tighter">Profile</span>
             </button>
         </div>
     </div>
@@ -1773,6 +1747,38 @@ function applyProduct(imageUrl, productName, price) {
         
         console.log('Product applied:', productName, price);
     }, 800);
+}
+
+// ============================================
+// WEEKLY SYNC FUNCTIONS
+// ============================================
+function showWeeklyOptions() {
+    const options = ['주간 스타일 다운로드', '캘린더와 동기화', '공유하기', '설정'];
+    const choice = options[Math.floor(Math.random() * options.length)];
+    alert(`${choice} 기능이 곧 추가됩니다!`);
+}
+
+function addDayStyle(day) {
+    const dayNames = {
+        'thursday': '목요일',
+        'friday': '금요일',
+        'weekend': '주말'
+    };
+    
+    if (confirm(`${dayNames[day]} 스타일을 추가하시겠습니까?\n\nMy Look 페이지에서 완성된 룩을 선택할 수 있습니다.`)) {
+        navigateTo('my-look');
+    }
+}
+
+function viewMagazine() {
+    alert('StyleSync Magazine Issue #07\n\n"The Success Drop"\n\n곧 전체 매거진을 확인하실 수 있습니다!');
+}
+
+function downloadMagazine() {
+    const confirmed = confirm('StyleSync Magazine Issue #07을 다운로드하시겠습니까?');
+    if (confirmed) {
+        alert('다운로드가 시작되었습니다! 📥');
+    }
 }
 
 // ============================================
